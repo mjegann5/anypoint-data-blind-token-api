@@ -1,0 +1,19 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:crypto="http://www.mulesoft.org/schema/mule/crypto" xmlns:ee="http://www.mulesoft.org/schema/mule/ee/core"
+      xmlns:cw="http://www.mulesoft.org/schema/mule/cw"
+      xmlns:weather="http://www.mulesoft.org/schema/mule/weather" xmlns:http="http://www.mulesoft.org/schema/mule/http" xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/weather http://www.mulesoft.org/schema/mule/weather/current/mule-weather.xsd
+http://www.mulesoft.org/schema/mule/cw http://www.mulesoft.org/schema/mule/cw/current/mule-cw.xsd
+http://www.mulesoft.org/schema/mule/ee/core http://www.mulesoft.org/schema/mule/ee/core/current/mule-ee.xsd
+http://www.mulesoft.org/schema/mule/crypto http://www.mulesoft.org/schema/mule/crypto/current/mule-crypto.xsd">
+	<flow name="token" doc:id="2320e0de-0214-42ef-8252-da76d34a55af" >
+		<http:listener doc:name="Listener" doc:id="80124f62-ee35-40df-9439-4a8ddde85fc2" config-ref="Token_Http_Listener" path="/createToken" allowedMethods="GET" />
+		<logger level="INFO" doc:name="Logger" doc:id="b16a5aae-313a-4e85-b48a-2cb8d371ded2" message='"Token Request Received"'/>
+		<cw:create-override-token doc:name="Create override token" doc:id="9cedad25-85fe-4475-bde5-2d212e0ae132" config-ref="DataBlindCrypto_Config" passPhrase="#[attributes.queryParams.passPhrase]" expirationDays="#[attributes.queryParams.expirationDays]"/>
+		<logger level="INFO" doc:name="Logger" doc:id="5faf34b3-240d-4377-9398-5dbb7796f875" message='"Token Created " '/>
+	
+</flow>
+
+</mule>

@@ -1,0 +1,19 @@
+### DO NOT EDIT project.artifactId and project.version. To be replaced by Maven build ###
+
+api:
+  name: "${project.artifactId}"
+  version: "${project.version}"
+  basepath: "/api/v1"
+
+## Use https.port or https.private.port in Token_Http_Listener as per your deployment
+https:
+  host: "0.0.0.0"
+  port: "8091"
+  private:
+    port: "8092"
+    
+## This is only a default value. Set the value as Runtime Property in Anypoint Platform 
+dataBlind:
+  key : "1234123412341234"
+    
+    

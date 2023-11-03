@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="UTF-8"?>
+
+<mule xmlns:secure-properties="http://www.mulesoft.org/schema/mule/secure-properties"
+	xmlns:tls="http://www.mulesoft.org/schema/mule/tls" xmlns:http="http://www.mulesoft.org/schema/mule/http"
+	xmlns:cw="http://www.mulesoft.org/schema/mule/cw"
+	xmlns="http://www.mulesoft.org/schema/mule/core" xmlns:doc="http://www.mulesoft.org/schema/mule/documentation" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="
+http://www.mulesoft.org/schema/mule/tls http://www.mulesoft.org/schema/mule/tls/current/mule-tls.xsd http://www.mulesoft.org/schema/mule/core http://www.mulesoft.org/schema/mule/core/current/mule.xsd
+http://www.mulesoft.org/schema/mule/cw http://www.mulesoft.org/schema/mule/cw/current/mule-cw.xsd
+http://www.mulesoft.org/schema/mule/http http://www.mulesoft.org/schema/mule/http/current/mule-http.xsd
+http://www.mulesoft.org/schema/mule/secure-properties http://www.mulesoft.org/schema/mule/secure-properties/current/mule-secure-properties.xsd">
+	<tls:context name="TLS_Context" doc:name="TLS Context" doc:id="41873543-4172-4967-aa05-2b1c42508f1d"
+		doc:description="TLS Context">
+		<tls:key-store type="jks" path="keystores/keystore.jks" keyPassword="${secure::keystore.keypassword}"
+			password="${secure::keystore.password}" alias="selfsigned" />
+	</tls:context>
+	<cw:config name="DataBlindCrypto_Config" doc:name="CW Config" doc:id="8fa3b7d4-465a-46fc-b09c-57c3999742dc" encryptionKey='${dataBlind.key}' licenseKey='#["Free Trail"]' doc:description="DataBlind Encryptiok Key"/>
+	<http:listener-config name="Token_Http_Listener" doc:name="HTTP Listener config" doc:id="90e14786-fd0f-4e1b-8b95-a4918dbc11a3" basePath="${api.basepath}" doc:description="HTTP Listener for Token API">
+		<http:listener-connection host="${https.host}" port="${https.port}" tlsContext="TLS_Context" protocol="HTTPS"/>
+	</http:listener-config>
+	<global-property doc:name="Global Property" doc:id="73f9df5a-f4cd-48d9-a046-97514733ae33" name="mule.key"
+		value="12345678901234567890123456789012" doc:description="mule key for decryting the secure properties" />
+	<configuration-properties doc:name="Configuration properties" doc:id="fb34746d-61c8-4c72-aa1e-6e14acb40084"
+		file="config/token-config.yaml" doc:description="Unsecured Properties" />
+	<secure-properties:config name="Secure_Properties_Config" doc:name="Secure Properties Config" doc:id="87e786ce-ceb7-470b-8b1d-8adccc311c45" key="${mule.key}" file="config/token-config-secure.yaml" doc:description="Secure configuration properties"/>	
+
+</mule>
