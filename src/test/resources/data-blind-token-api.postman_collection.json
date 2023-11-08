@@ -1,0 +1,79 @@
+{
+	"info": {
+		"_postman_id": "4dd033bb-1da0-40ae-a262-a392eb64f184",
+		"name": "anypoint-data-blind-token-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "8871719"
+	},
+	"item": [
+		{
+			"name": "overRideToken Local",
+			"protocolProfileBehavior": {
+				"disableBodyPruning": true
+			},
+			"request": {
+				"method": "GET",
+				"header": [
+					{
+						"key": "X-Correlation-ID",
+						"type": "text",
+						"value": "valurcorid"
+					},
+					{
+						"key": "client_Id",
+						"type": "text",
+						"value": "2715b51ff990432fb1a904957ecbebd4"
+					},
+					{
+						"key": "client_secret",
+						"type": "text",
+						"value": "8fDd95b8F0Bb486f8620B7C1C39bC23e"
+					},
+					{
+						"key": "user_ctx_Id",
+						"type": "text",
+						"value": "website"
+					},
+					{
+						"key": "user_ctx_desc",
+						"type": "text",
+						"value": "Optonal User Contect Cookmedica website "
+					}
+				],
+				"body": {
+					"mode": "raw",
+					"raw": "",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://localhost:8091/api/v1/createToken?passPhrase=123&expirationDays=12",
+					"protocol": "https",
+					"host": [
+						"localhost"
+					],
+					"port": "8091",
+					"path": [
+						"api",
+						"v1",
+						"createToken"
+					],
+					"query": [
+						{
+							"key": "passPhrase",
+							"value": "123"
+						},
+						{
+							"key": "expirationDays",
+							"value": "12"
+						}
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
