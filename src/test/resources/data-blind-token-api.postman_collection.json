@@ -50,7 +50,7 @@
 					}
 				},
 				"url": {
-					"raw": "https://localhost:8091/api/v1/createToken?passPhrase=123&expirationDays=12",
+					"raw": "https://localhost:8091/api/v1/createToken?passPhrase=Jewjbhd&expirationSecs=3715200&newKey=68687686787",
 					"protocol": "https",
 					"host": [
 						"localhost"
@@ -64,11 +64,15 @@
 					"query": [
 						{
 							"key": "passPhrase",
-							"value": "123"
+							"value": "Jewjbhd"
 						},
 						{
-							"key": "expirationDays",
-							"value": "12"
+							"key": "expirationSecs",
+							"value": "3715200"
+						},
+						{
+							"key": "newKey",
+							"value": "68687686787"
 						}
 					]
 				}
